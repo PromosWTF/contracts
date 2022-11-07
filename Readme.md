@@ -1,10 +1,4 @@
-# <img src="logo.png" alt="Promos" height="40px">
-
 [![NPM Package](https://img.shields.io/npm/v/@promos/contracts.svg)](https://www.npmjs.org/package/@promos/contracts)
-
-`Promos.sol` - The contract you need to start **minting** directly via [Promos](https://promos.wtf) referral system
-
-## Overview
 
 ### Installation
 
@@ -16,7 +10,7 @@ $ npm i @promos/contracts
 
 Once installed, import and inherit the `Promos` contract
 
-````solidity
+```solidity
 pragma solidity ^0.8.0;
 
 import "@promos/contracts/Promos.sol";
@@ -49,7 +43,7 @@ contract ERC721 is ERC721A, Promos, Ownable {
         _safeMint(_to, _amount);
     }
 
-    // Here we have to override the `supportsInterface` function. It's important to support `IPromos.sol` interface, so we know we deals with compatible contract 
+    // Here we have to override the `supportsInterface` function. It's important to support `IPromos.sol` interface, so we know we deals with compatible contract
     function supportsInterface(bytes4 interfaceId)
         public
         view
@@ -62,4 +56,4 @@ contract ERC721 is ERC721A, Promos, Ownable {
             super.supportsInterface(interfaceId);
     }
 }
-````
+```
