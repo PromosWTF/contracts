@@ -1,6 +1,6 @@
 # <img src="logo.png" alt="Promos" height="40px">
 
-[![NPM Package](https://img.shields.io/npm/v/@openzeppelin/contracts.svg)](https://www.npmjs.org/package/@openzeppelin/contracts)
+[![NPM Package](https://img.shields.io/npm/v/@promos/contracts.svg)](https://www.npmjs.org/package/@promos/contracts)
 
 `Promos.sol` - The contract you need to start **minting** directly via [Promos](https://promos.wtf) referral system
 
