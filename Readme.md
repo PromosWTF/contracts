@@ -20,11 +20,9 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract ERC721 is ERC721A, Promos, Ownable {
     constructor(address _promosMintContract)
         ERC721A("NAME", "SYMBOL")
-        // Provide the latest `promosMintContract` address
         Promos(_promosMintContract)
     {}
 
-    // We need this function for you to able to revoke mint access from Promos
     function setPromosMintContract(address _promosMintContract)
         external
         override
@@ -33,17 +31,21 @@ contract ERC721 is ERC721A, Promos, Ownable {
         promosMintContract = _promosMintContract;
     }
 
-    // Promos will be using this function to mint. Use `OnlyPromos` modifier to make sure that only Promos can mint via this fucntion. And, finally, Invoke _safeMint(_to, _amount)
+    // Promos mint function. Use `OnlyPromos` modifier to restrict to Promos contract
     function mintPromos(address _to, uint256 _amount)
         external
         payable
         override
         OnlyPromos(_to)
     {
+        // Your custom logic here
+
+        // IMPORTANT! 
+        // Avoid using msg.sender and use _to argument instead
         _safeMint(_to, _amount);
     }
 
-    // Here we have to override the `supportsInterface` function. It's important to support `IPromos.sol` interface, so we know we deals with compatible contract
+    // Required to support `IPromos.sol`
     function supportsInterface(bytes4 interfaceId)
         public
         view
