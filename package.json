@@ -1,0 +1,11 @@
+{
+  "name": "@promos/contracts",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.3"
+  }
+}
