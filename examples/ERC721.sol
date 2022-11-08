@@ -5,16 +5,16 @@ import "@promos/contracts/Promos.sol";
 import "erc721a/contracts/ERC721A.sol";
 
 contract ERC721 is ERC721A, Promos {
-    constructor(address _promosMintContract)
-        ERC721A("NAME", "SYMBOL")
-        Promos(_promosMintContract)
+    constructor(address _promosProxyContract)
+        ERC721A("", "")
+        Promos(_promosProxyContract)
     {}
 
-    function setPromosMintContract(address _promosMintContract)
+    function setPromosProxyContract(address _promosProxyContract)
         external
         override
     {
-        promosMintContract = _promosMintContract;
+        promosProxyContract = _promosProxyContract;
     }
 
     function mintPromos(address _to, uint256 _amount)

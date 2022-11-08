@@ -6,5 +6,6 @@ pragma solidity ^0.8.0;
 
 interface IPromos {
     function mintPromos(address _to, uint256 _amount) external payable;
-    function setPromosMintContract(address _promosMintContract) external;
+
+    function setPromosProxyContract(address _promosProxyContract) external;
 }

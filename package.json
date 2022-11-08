@@ -2,7 +2,19 @@
   "name": "@promos/contracts",
   "version": "1.0.2",
   "description": "",
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gomintnft/promos.git"
+  },
+  "keywords": [
+    "solidity",
+    "ethereum",
+    "smart",
+    "contracts",
+    "promos",
+    "gomint"
+  ],
+  "homepage": "https://promos.wtf",
   "author": "",
   "license": "MIT",
   "dependencies": {

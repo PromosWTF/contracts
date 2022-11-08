@@ -5,16 +5,15 @@
 pragma solidity ^0.8.0;
 
 import "./IPromos.sol";
+import "./PromosProxy.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 
 abstract contract Promos is IPromos, ERC165 {
-    address promosMintContract;
-
-    constructor(address _promosMintContract) {
-        promosMintContract = _promosMintContract;
-    }
+    // FIXME: Initialize promosProxyContract
+    address promosProxyContract;
 
     modifier OnlyPromos(address _to) {
+        address promosMintContract = PromosProxy(promosProxyContract).promosMintAddress();
         require(_to != promosMintContract, "Not ERC721 reciever");
         require(msg.sender == promosMintContract, "Wrong msg.sender");
         _;
