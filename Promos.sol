@@ -9,7 +9,7 @@ import "./PromosProxy.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 
 abstract contract Promos is IPromos, ERC165 {
-    address promosProxyContract;
+    address public promosProxyContract;
 
     modifier OnlyPromos(address _to) {
         address promosMintContract = PromosProxy(promosProxyContract)
