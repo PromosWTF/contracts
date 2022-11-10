@@ -3,16 +3,15 @@ pragma solidity ^0.8.9;
 
 import "@promos/contracts/Promos.sol";
 import "erc721a/contracts/ERC721A.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract ERC721 is ERC721A, Promos {
-    constructor(address _promosProxyContract)
-        ERC721A("", "")
-        Promos(_promosProxyContract)
-    {}
+contract ERC721 is ERC721A, Promos, Ownable {
+    constructor() ERC721A("", "") {}
 
     function setPromosProxyContract(address _promosProxyContract)
         external
         override
+        onlyOwner
     {
         promosProxyContract = _promosProxyContract;
     }

@@ -18,17 +18,14 @@ import "erc721a/contracts/ERC721A.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract ERC721 is ERC721A, Promos, Ownable {
-    constructor(address _promosMintContract)
-        ERC721A("NAME", "SYMBOL")
-        Promos(_promosMintContract)
-    {}
+    constructor() ERC721A("", "") {}
 
-    function setPromosMintContract(address _promosMintContract)
+    function setPromosProxyContract(address _promosProxyContract)
         external
         override
         onlyOwner
     {
-        promosMintContract = _promosMintContract;
+        promosProxyContract = _promosProxyContract;
     }
 
     // Promos mint function. Use `OnlyPromos` modifier to restrict to Promos contract
