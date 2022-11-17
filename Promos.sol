@@ -6,14 +6,11 @@ pragma solidity ^0.8.0;
 
 import "./IPromos.sol";
 import "./PromosProxy.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 
-abstract contract Promos is IPromos, ERC165 {
+abstract contract Promos is IPromos, ERC165, Ownable {
     address public promosProxyContract;
-
-    constructor(address _owner) {
-        require(_owner != address(0), "Ownable is required in derived contract: https://docs.openzeppelin.com/contracts/4.x/api/access#Ownable");
-    }
 
     modifier OnlyPromos(address _to) {
         address promosMintContract = PromosProxy(promosProxyContract)

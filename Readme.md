@@ -10,6 +10,8 @@ $ npm i @promos/contracts
 
 Once installed, import and inherit the `Promos` contract
 
+Note that Promos inherits Ownable.sol by OpenZeppelin (https://docs.openzeppelin.com/contracts/4.x/api/access#Ownable)
+
 **Please, pay particular attention to comments for `mintPromos` function below**
 
 ```solidity
@@ -17,10 +19,9 @@ pragma solidity ^0.8.0;
 
 import "@promos/contracts/Promos.sol";
 import "erc721a/contracts/ERC721A.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract ERC721 is ERC721A, Promos, Ownable {
-    constructor() ERC721A("", "") Promos(owner()) {}
+contract ERC721 is ERC721A, Promos {
+    constructor() ERC721A("", "") {}
 
     /**
      * @dev 

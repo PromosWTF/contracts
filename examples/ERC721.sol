@@ -3,10 +3,9 @@ pragma solidity ^0.8.9;
 
 import "@promos/contracts/Promos.sol";
 import "erc721a/contracts/ERC721A.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract ERC721 is ERC721A, Promos, Ownable {
-    constructor() ERC721A("", "") Promos(owner()) {}
+contract ERC721 is ERC721A, Promos {
+    constructor() ERC721A("", "") {}
 
     /**
      * @dev 
