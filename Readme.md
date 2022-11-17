@@ -44,7 +44,7 @@ contract ERC721 is ERC721A, Promos, Ownable {
     {
         // IMPORTANT!
         // Add custom logic here
-        // Make sure to require certain conditions to be met(e.g. supply, max per wallet, etc.)
+        // Make sure to implement guardrails like supply, max per wallet, etc.
 
         // IMPORTANT! 
         // Avoid using msg.sender and use _to argument instead
