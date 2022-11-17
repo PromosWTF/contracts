@@ -9,6 +9,7 @@ $ npm i @promos/contracts
 ### Usage
 
 Once installed, import and inherit the `Promos` contract
+
 **Please, pay particular attention to comments for `mintPromos` function below**
 
 ```solidity
