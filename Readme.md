@@ -9,6 +9,7 @@ $ npm i @promos/contracts
 ### Usage
 
 Once installed, import and inherit the `Promos` contract
+**Please, pay particular attention to comments for `mintPromos` function below**
 
 ```solidity
 pragma solidity ^0.8.0;
@@ -18,7 +19,7 @@ import "erc721a/contracts/ERC721A.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract ERC721 is ERC721A, Promos, Ownable {
-    constructor() ERC721A("", "") {}
+    constructor() ERC721A("", "") Promos(owner()) {}
 
     /**
      * @dev 
@@ -41,7 +42,9 @@ contract ERC721 is ERC721A, Promos, Ownable {
         override
         OnlyPromos(_to)
     {
-        // Your custom logic here
+        // IMPORTANT!
+        // Add custom logic here
+        // Make sure to require certain conditions to be met(e.g. supply, max per wallet, etc.)
 
         // IMPORTANT! 
         // Avoid using msg.sender and use _to argument instead

@@ -11,6 +11,10 @@ import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 abstract contract Promos is IPromos, ERC165 {
     address public promosProxyContract;
 
+    constructor(address _owner) {
+        require(_owner != address(0), "Ownable is required in derived contract: https://docs.openzeppelin.com/contracts/4.x/api/access#Ownable");
+    }
+
     modifier OnlyPromos(address _to) {
         address promosMintContract = PromosProxy(promosProxyContract)
             .promosMintAddress();
