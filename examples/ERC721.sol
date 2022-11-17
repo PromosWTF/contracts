@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
 import "@promos/contracts/Promos.sol";
@@ -6,7 +6,7 @@ import "erc721a/contracts/ERC721A.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract ERC721 is ERC721A, Promos, Ownable {
-    constructor() ERC721A("", "") {}
+    constructor() ERC721A("", "") Promos(owner()) {}
 
     /**
      * @dev 
@@ -28,6 +28,13 @@ contract ERC721 is ERC721A, Promos, Ownable {
         override
         OnlyPromos(_to)
     {
+
+        // IMPORTANT!
+        // Custom logic here 
+        // Make sure to implement guardrails like supply, max per wallet, etc.
+
+        // IMPORTANT! 
+        // Avoid using msg.sender and use _to argument instead
         _safeMint(_to, _amount);
     }
 
