@@ -11,13 +11,24 @@ import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 
 abstract contract Promos is IPromos, ERC165, Ownable {
     address public promosProxyContract;
+    uint256 public promosSupply;
 
-    modifier OnlyPromos(address _to) {
+    constructor(uint256 _promosSupply) {
+        promosSupply = _promosSupply;
+    }
+
+    modifier MintPromos(address _to, uint256 _mintAmount) {
         address promosMintContract = PromosProxy(promosProxyContract)
             .promosMintAddress();
         require(_to != promosMintContract, "Not ERC721 reciever");
         require(msg.sender == promosMintContract, "Wrong msg.sender");
+        require(_mintAmount <= promosSupply, "Exceeds Promos supply");
+        promosSupply = promosSupply - _mintAmount;
         _;
+    }
+
+    function setPromosSupply(uint256 _promosSupply) external onlyOwner {
+        promosSupply = _promosSupply;
     }
 
     /**
@@ -34,4 +45,6 @@ abstract contract Promos is IPromos, ERC165, Ownable {
             interfaceId == type(IPromos).interfaceId ||
             super.supportsInterface(interfaceId);
     }
+
+    receive() external payable {}
 }

@@ -21,13 +21,15 @@ import "@promos/contracts/Promos.sol";
 import "erc721a/contracts/ERC721A.sol";
 
 contract ERC721 is ERC721A, Promos {
-    constructor() ERC721A("", "") {}
+    constructor() 
+        ERC721A("", "") 
+        Promos(1000) {}
 
     /**
      * @dev 
      * After deployment use this function to set `promosProxyContract`. 
      * Mainnet - 0xA7296e3239Db13ACa886Fb130aE5Fe8f5A315721 
-     * Goerli  - 0x90766204108309bf97b998E262D05aa1b00Bc35c
+     * Goerli  - 0xf4Ac6561bCE3b841a354ee1eF827A3e48a78F152
      */
     function setPromosProxyContract(address _promosProxyContract)
         external
@@ -42,7 +44,7 @@ contract ERC721 is ERC721A, Promos {
         external
         payable
         override
-        OnlyPromos(_to)
+        MintPromos(_to, _amount)
     {
         // IMPORTANT!
         // Add custom logic here
