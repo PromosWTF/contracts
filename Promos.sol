@@ -5,8 +5,11 @@
 pragma solidity ^0.8.0;
 
 import "./IPromos.sol";
-import "./PromosProxy.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
+
+contract PromosProxy {
+    address public promosMintAddress;
+}
 
 abstract contract Promos is IPromos, ERC165 {
     address public promosOwner;
@@ -14,9 +17,9 @@ abstract contract Promos is IPromos, ERC165 {
     address public promosProxyContract;
 
     /**
-     * @dev 
+     * @dev
      * IMPORTANT! Only use addresses you see below for `_promosProxyContract`
-     * Mainnet - 0xA7296e3239Db13ACa886Fb130aE5Fe8f5A315721 
+     * Mainnet - 0xA7296e3239Db13ACa886Fb130aE5Fe8f5A315721
      * Goerli  - 0xf4Ac6561bCE3b841a354ee1eF827A3e48a78F152
      */
     constructor(uint256 _promosSupply, address _promosProxyContract) {
@@ -26,12 +29,18 @@ abstract contract Promos is IPromos, ERC165 {
     }
 
     /**
-     * @dev 
+     * @dev
      * This operation will delete all the ongoing campaigns
      */
     function transferPromosOwnership(address _promosOwner) external {
-        require(msg.sender == promosOwner, 'Promos: Caller is not the controller');
-        require(_promosOwner != address(0), "Promos: new controller is the zero address");
+        require(
+            msg.sender == promosOwner,
+            "Promos: Caller is not the controller"
+        );
+        require(
+            _promosOwner != address(0),
+            "Promos: new controller is the zero address"
+        );
 
         promosOwner = _promosOwner;
     }
@@ -47,8 +56,13 @@ abstract contract Promos is IPromos, ERC165 {
     }
 
     function setPromosSupply(uint256 _promosSupply) external {
-        require(msg.sender == promosOwner, 'Promos: Caller is not the controller');
+        require(msg.sender == promosOwner, "Promos: Caller is not the owner");
         promosSupply = _promosSupply;
+    }
+
+    function setPromosProxyContract(address _promosProxyContract) external {
+        require(msg.sender == promosOwner, "Promos: Caller is not the owner");
+        promosProxyContract = _promosProxyContract;
     }
 
     /**
@@ -65,6 +79,4 @@ abstract contract Promos is IPromos, ERC165 {
             interfaceId == type(IPromos).interfaceId ||
             super.supportsInterface(interfaceId);
     }
-
-    receive() external payable {}
 }
