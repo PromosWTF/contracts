@@ -6,6 +6,7 @@
 [![NPM Package](https://img.shields.io/npm/v/@promos/contracts.svg)](https://www.npmjs.org/package/@promos/contracts)
 
 </div>
+
 ### Installation
 
 ```console
