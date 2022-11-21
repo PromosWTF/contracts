@@ -55,5 +55,9 @@ contract ERC721 is ERC721A, Promos {
             Promos.supportsInterface(interfaceId) ||
             super.supportsInterface(interfaceId);
     }
+
+    // IMPORTANT! Implement this function in order
+    // to receive funds from Promos to your contract
+    receive() external payable override {}
 }
 ```
