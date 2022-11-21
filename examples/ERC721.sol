@@ -5,12 +5,10 @@ import "@promos/contracts/Promos.sol";
 import "erc721a/contracts/ERC721A.sol";
 
 contract ERC721 is ERC721A, Promos {
-    // IMPORTANT! Only use addresses you see below for Promos constructor
-    // Mainnet - 0xA7296e3239Db13ACa886Fb130aE5Fe8f5A315721
-    // Goerli  - 0xf4Ac6561bCE3b841a354ee1eF827A3e48a78F152
+    // Specify Promos max supply and contract: promosProxyContractMainnet or promosProxyContractTestnet
     constructor()
         ERC721A("", "")
-        Promos(1000, 0xf4Ac6561bCE3b841a354ee1eF827A3e48a78F152)
+        Promos(500, 0xf4Ac6561bCE3b841a354ee1eF827A3e48a78F152)
     {}
 
     // Promos mint function

@@ -15,13 +15,9 @@ abstract contract Promos is IPromos, ERC165 {
     address public promosOwner;
     uint256 public promosSupply;
     address public promosProxyContract;
-
-    /**
-     * @dev
-     * IMPORTANT! Only use addresses you see below for `_promosProxyContract`
-     * Mainnet - 0xA7296e3239Db13ACa886Fb130aE5Fe8f5A315721
-     * Goerli  - 0xf4Ac6561bCE3b841a354ee1eF827A3e48a78F152
-     */
+    address constant promosProxyContractMainnet = 0xA7296e3239Db13ACa886Fb130aE5Fe8f5A315721;
+    address constant promosProxyContractTestnet = 0xf4Ac6561bCE3b841a354ee1eF827A3e48a78F152;
+    
     constructor(uint256 _promosSupply, address _promosProxyContract) {
         promosOwner = msg.sender;
         promosSupply = _promosSupply;

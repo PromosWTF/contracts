@@ -1,5 +1,11 @@
+<p align="center">
+  <img src="https://github.com/gomintnft/promos/blob/main/logo.png?raw=true" width="150" alt="Promos">
+</p>
+<div align="center">
+
 [![NPM Package](https://img.shields.io/npm/v/@promos/contracts.svg)](https://www.npmjs.org/package/@promos/contracts)
 
+</div>
 ### Installation
 
 ```console
@@ -19,14 +25,12 @@ import "@promos/contracts/Promos.sol";
 import "erc721a/contracts/ERC721A.sol";
 
 contract ERC721 is ERC721A, Promos {
-    // IMPORTANT! Only use addresses you see below for Promos constructor
-    // Mainnet - 0xA7296e3239Db13ACa886Fb130aE5Fe8f5A315721 
-    // Goerli  - 0xf4Ac6561bCE3b841a354ee1eF827A3e48a78F152
-    constructor() 
-        ERC721A("", "") 
-        Promos(1000, 0xf4Ac6561bCE3b841a354ee1eF827A3e48a78F152) {}
+    constructor()
+        // Specify Promos max supply and contract: promosProxyContractMainnet or promosProxyContractTestnet
+        ERC721A("", "")
+        Promos(500, promosProxyContractTestnet) {}
 
-    // Promos mint function 
+    // Promos mint function
     // IMPORTANT! Must use `MintPromos` modifier
     function mintPromos(address _to, uint256 _amount)
         external
@@ -38,7 +42,7 @@ contract ERC721 is ERC721A, Promos {
         // Add custom logic here
         // Make sure to implement guardrails like supply, max per wallet, etc.
 
-        // IMPORTANT! 
+        // IMPORTANT!
         // Avoid using msg.sender and use _to argument instead
         _safeMint(_to, _amount);
     }
